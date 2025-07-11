@@ -26,10 +26,14 @@ class SimpleTokenizer:
             words = clean_sentence.split() # Chop up sentence
             unique_words.update(words)  # Add words to set
 
+        # Add special unknown token
+        self.word_to_id['<UNK>'] = 0
+        self.id_to_word[0] = '<UNK>'
+
         # After building unique_words set
         for i, word in enumerate(unique_words):
-            self.word_to_id[word] = i
-            self.id_to_word[i] = word 
+            self.word_to_id[word] = i + 1 
+            self.id_to_word[i + 1] = word 
     
     def tokenize(self, text):
         # Step 1: Clean the text (same as build_vocab)
@@ -40,8 +44,8 @@ class SimpleTokenizer:
         
         # Step 3: Convert each word to its number
         token_ids = []
-        UNK = 0
         for word in words:
-            token_ids.append(self.word_to_id.get(word, UNK))
+            unkown_token = 0
+            token_ids.append(self.word_to_id.get(word, unkown_token))
 
         return token_ids
