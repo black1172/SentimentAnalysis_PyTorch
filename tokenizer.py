@@ -40,7 +40,8 @@ class SimpleTokenizer:
         
         # Step 3: Convert each word to its number
         token_ids = []
+        UNK = 0
         for word in words:
-            token_ids.append(self.word_to_id.get(word))
+            token_ids.append(self.word_to_id.get(word, UNK))
 
         return token_ids
