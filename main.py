@@ -1,4 +1,16 @@
-# Test the tokenizer
+from model import SentimentRNN
+from tokenizer import SimpleTokenizer
+
+# Create tokenizer first
+tokenizer = SimpleTokenizer()
+tokenizer.build_vocab(your_reviews)  # Build vocabulary
+
+# Now create model with specific sizes
+vocab_size = len(tokenizer.word_to_id)  # Number of unique words
+embed_size = 50    # Size of word vectors
+hidden_size = 64   # Size of RNN memory
+
+model = SentimentRNN(vocab_size, embed_size, hidden_size)
 from tokenizer import SimpleTokenizer
 
 # Sample movie reviews
