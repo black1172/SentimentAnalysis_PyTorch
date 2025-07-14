@@ -13,7 +13,7 @@ class SimpleTokenizer:
         for punct in string.punctuation:
             text = text.replace(punct, '')
 
-        # Handle upper lower
+        # Handle upper lower case issues
         text = text.lower()
         return text
 
