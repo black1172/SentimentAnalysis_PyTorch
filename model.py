@@ -15,5 +15,16 @@ class SentimentRNN(nn.Module):
         self.fc = nn.Linear(hidden_size, 1)  # 1 output for binary classification
         
     def forward(self, x):
+        # Step 1: Convert word IDs to word vectors
+        embedded = self.embedding(x)
         
-        pass
+        # Step 2: Process through RNN
+        rnn_output, hidden = self.rnn(embedded)
+        
+        # Step 3: Get final sentiment representation
+        final_output = rnn_output[:, -1, :]
+        
+        # Step 4: Convert to sentiment probability (0-1 range)
+        output = torch.sigmoid(self.fc(final_output))
+        
+        return output
