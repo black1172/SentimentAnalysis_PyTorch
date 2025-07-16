@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class SentimentRNN(nn.Module):
-    def __init__(self, vocab_size, hidden_size):
+    def __init__(self, vocab_size, embed_size, hidden_size):
         super(SentimentRNN, self).__init__()
         
         # Layer 1: Convert word IDs to dense vectors
@@ -15,5 +15,5 @@ class SentimentRNN(nn.Module):
         self.fc = nn.Linear(hidden_size, 1)  # 1 output for binary classification
         
     def forward(self, x):
-        # TODO: How do we process a sequence of word IDs?
+        
         pass
