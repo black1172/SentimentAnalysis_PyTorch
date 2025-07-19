@@ -7,7 +7,7 @@ reviews = d.get_sample_data()
 
 # Build maps
 tokenizer = SimpleTokenizer()
-tokenizer.build_vocab(reviews)
+tokenizer.build_vocab(reviews[0 ,:])
 
 # Create model with specific sizes
 vocab_size = len(tokenizer.word_to_id)  # Number of unique words
@@ -19,8 +19,8 @@ model = SentimentRNN(vocab_size, embed_size, hidden_size)
 print("Vocabulary:", tokenizer.word_to_id)
 
 # Training loop
-for review in reviews:
-    tokenized_review = tokenizer.tokenize(review)
+for review_text, label in reviews:  # Unpack the tuple
+    tokenized_review = tokenizer.tokenize(review_text)
     prediction = model(tokenized_review)
     
 
