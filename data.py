@@ -4,7 +4,7 @@ def get_sample_data():
     # 1 = positive, 0 = negative
     reviews = [
         ("This movie was amazing", 1),
-        ("Great film loved it", 1),
+        ("Awesome film loved it", 1),
         ("Fantastic movie really enjoyed", 1),
         ("Best movie ever seen", 1),
         ("Wonderful acting and story", 1),
