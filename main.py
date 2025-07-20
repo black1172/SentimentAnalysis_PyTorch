@@ -8,9 +8,12 @@ import torch
 # Get data
 reviews = d.get_sample_data()
 
-# Build maps
+# Extract just text for vocabulary building
+texts = [review_text for review_text, label in reviews]
+
+# Build vocabulary
 tokenizer = SimpleTokenizer()
-tokenizer.build_vocab(reviews[0 ,:])
+tokenizer.build_vocab(texts)
 
 # Create model with specific sizes
 vocab_size = len(tokenizer.word_to_id)  # Number of unique words
@@ -18,15 +21,13 @@ embed_size = 50    # Size of word vectors
 hidden_size = 64   # Size of RNN memory
 model = SentimentRNN(vocab_size, embed_size, hidden_size)
 
-# Display Vocab
-print("Vocabulary:", tokenizer.word_to_id)
-
 # Training setup
 criterion = nn.BCELoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Training loop
 for review_text, label in reviews:
+
     # Step 1: Convert text to tokens
     tokens = tokenizer.tokenize(review_text)
     
@@ -35,7 +36,7 @@ for review_text, label in reviews:
     target_tensor = torch.tensor([label])
     
     # Step 3: Forward pass
-    prediction = model(target_tensor)   # implicit forward call by pytorch
+    prediction = model(input_tensor)   # implicit forward call by pytorch
     
     # Step 4: Calculate loss
     loss = criterion(prediction, target_tensor)
