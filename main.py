@@ -33,13 +33,13 @@ for review_text, label in reviews:
     
     # Step 2: Convert to tensor and add batch dimension (can use brackets for batch dim)
     input_tensor = torch.tensor([tokens])
-    target_tensor = torch.tensor([label])
+    target_tensor = torch.tensor([label], dtype=torch.float32)
     
     # Step 3: Forward pass
     prediction = model(input_tensor)   # implicit forward call by pytorch
     
     # Step 4: Calculate loss
-    loss = criterion(prediction, target_tensor)
+    loss = criterion(prediction.squeeze(-1), target_tensor) # -1 removes all but first dim
     
     # Step 5: Backward pass and optimization
     optimizer.zero_grad()
