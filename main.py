@@ -27,7 +27,7 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Training loop
 final_average_loss = 0
-for x in range(100):
+for epoch in range(10):
     for review_text, label in reviews:
 
         # Step 1: Convert text to tokens
