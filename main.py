@@ -63,7 +63,7 @@ print(f"Final Average loss: {final_average_loss: .3f}")
 # Testing Untrained data
 untrained_reviews = d.get_untrained_reviews()
 
-for review in reviews:
+for review in untrained_reviews:
 # Step 1: Convert text to tokens
     tokens = tokenizer.tokenize(review_text)
         
