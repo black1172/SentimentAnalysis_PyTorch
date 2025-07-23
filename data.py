@@ -16,3 +16,13 @@ def get_sample_data():
         ("Awful film waste of time", 0),
     ]
     return reviews
+
+# Sample data that the model is not trained on
+def get_untrained_reviews():
+    # Format: (review_text, label)
+    # 1 = positive, 0.5 = neutral, 0 = bad
+    reviews = [
+        ("This was a good piece of cinema.", 1),
+        ("Not good, but not bad.", 0.5),
+        ("What a bad no good horrible movie.", 0)
+    ]
