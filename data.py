@@ -24,5 +24,6 @@ def get_untrained_reviews():
     reviews = [
         ("This was a good piece of cinema.", 1),
         ("Not good, but not bad.", 0.5),
-        ("What a bad no good horrible movie.", 0)
+        ("What a bad no good horrible movie.", 0),
+        ("Was a great movie 10/10.", 1),
     ]

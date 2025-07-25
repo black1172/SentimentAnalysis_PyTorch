@@ -63,8 +63,12 @@ print(f"Final Average loss: {final_average_loss: .3f}")
 # Testing Untrained data
 untrained_reviews = d.get_untrained_reviews()
 
+# Extract just text for vocabulary building
+texts = [review_text for review_text, label in untrained_reviews]
+
 for review in untrained_reviews:
-# Step 1: Convert text to tokens
+
+    # Step 1: Convert text to tokens
     tokens = tokenizer.tokenize(review_text)
         
     # Step 2: Convert to tensor and add batch dimension (can use brackets for batch dim)
