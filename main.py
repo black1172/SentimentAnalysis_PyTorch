@@ -1,4 +1,4 @@
-from model import SentimentRNN
+from model import SentimentLSTM
 from tokenizer import SimpleTokenizer
 import data as d
 import torch.nn as nn
@@ -19,7 +19,7 @@ tokenizer.build_vocab(texts)
 vocab_size = len(tokenizer.word_to_id)  # Number of unique words
 embed_size = 50    # Size of word vectors
 hidden_size = 64   # Size of RNN memory
-model = SentimentRNN(vocab_size, embed_size, hidden_size)
+model = SentimentLSTM(vocab_size, embed_size, hidden_size)
 
 # Training setup
 criterion = nn.BCELoss()
