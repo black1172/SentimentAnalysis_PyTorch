@@ -63,10 +63,8 @@ print(f"Final Average loss: {final_average_loss: .3f}")
 # Testing Untrained data
 untrained_reviews = d.get_untrained_reviews()
 
-# Extract just text for vocabulary building
-texts = [review_text for review_text, label in untrained_reviews]
-
-for review in untrained_reviews:
+# Testing untrained reviews
+for review, label in untrained_reviews:
 
     # Step 1: Convert text to tokens
     tokens = tokenizer.tokenize(review_text)
@@ -86,10 +84,6 @@ for review in untrained_reviews:
     loss.backward()
     optimizer.step()
 
-    final_average_loss += loss.item()
-        
-# Printing final
-for review_text, label in reviews:
-    print(f"Text: {review_text}")
+    print(f"Text: {review}")
     print(f"Prediction: {prediction.item():.3f}, Actual: {label}")
     print(f"Loss: {loss.item():.3f}\n")

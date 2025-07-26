@@ -27,3 +27,4 @@ def get_untrained_reviews():
         ("What a bad no good horrible movie.", 0),
         ("Was a great movie 10/10.", 1),
     ]
+    return reviews
