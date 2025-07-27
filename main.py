@@ -23,11 +23,11 @@ model = SentimentLSTM(vocab_size, embed_size, hidden_size)
 
 # Training setup
 criterion = nn.BCELoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
+optimizer = optim.Adam(model.parameters(), lr=0.0001)
 
 # Training loop
 final_average_loss = 0
-num_of_epochs = 10
+num_of_epochs = 20
 for epoch in range(num_of_epochs):
     for review_text, label in reviews:
 
@@ -85,6 +85,6 @@ for review, label in untrained_reviews:
     loss.backward()
     optimizer.step()
 
-    print(f"Text: {review}")
+    print(f"\nText: {review}")
     print(f"Prediction: {prediction.item():.3f}, Actual: {label}")
-    print(f"Loss: {loss.item():.3f}\n")
+    print(f"Loss: {loss.item():.3f}")

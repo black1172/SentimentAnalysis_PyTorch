@@ -93,9 +93,9 @@ def get_untrained_reviews():
     # Format: (review_text, label)
     # 1 = positive, 0.5 = neutral, 0 = bad
     reviews = [
-        ("This was a good piece of cinema.", 1),
-        ("Not good, but not bad.", 0.5),
-        ("What a bad no good horrible movie.", 0),
+        ("This movie did not impress me, really mediocre.", 0),
+        ("Not the directors best work, would not watch again.", 0),
+        ("Absolutely a must see, fantastic acting and screenplay.", 1),
         ("Was a great movie 10/10.", 1),
     ]
     return reviews

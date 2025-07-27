@@ -9,7 +9,7 @@ class SentimentLSTM(nn.Module):
         self.embedding = nn.Embedding(vocab_size, embed_size)
         
         # Layer 2: Process sequence with memory (Layer size 2)
-        self.lstm = nn.LSTM(embed_size, hidden_size, num_layers= 2, batch_first=True)
+        self.lstm = nn.LSTM(embed_size, hidden_size, num_layers= 3, batch_first=True)
         
         # Layer 3: Final classification
         self.fc = nn.Linear(hidden_size, 1)  # 1 output for binary classification
