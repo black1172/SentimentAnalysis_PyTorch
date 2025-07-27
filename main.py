@@ -27,7 +27,7 @@ optimizer = optim.Adam(model.parameters(), lr=0.0001)
 
 # Training loop
 final_average_loss = 0
-num_of_epochs = 20
+num_of_epochs = 10
 for epoch in range(num_of_epochs):
     for review_text, label in reviews:
 

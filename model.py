@@ -10,24 +10,27 @@ class SentimentLSTM(nn.Module):
         
         # Layer 2: Process sequence with memory (Layer size 2)
         self.lstm = nn.LSTM(embed_size, hidden_size, num_layers= 3, batch_first=True)
-        
-        # Layer 3: Final classification
-        self.fc = nn.Linear(hidden_size, 1)  # 1 output for binary classification
 
-        # Better initialization
-        torch.nn.init.xavier_uniform_(self.fc.weight)
+        # Layer 3: Add dropout to prevent over fitting
+        self.dropout = nn.Dropout(0.5)
+        
+        # Layer 4: Final classification
+        self.fc = nn.Linear(hidden_size, 1)  # 1 output for binary classification
         
     def forward(self, x):
         # Step 1: Convert word IDs to word vectors
         embedded = self.embedding(x)
         
         # Step 2: Process through LSTM
-        rnn_output, hidden = self.lstm(embedded)
+        lstm_output, hidden = self.lstm(embedded)
         
         # Step 3: Get final sentiment representation
-        final_output = rnn_output[:, -1, :]
+        final_output = lstm_output[:, -1, :]
+
+        # Step 4: Use Dropout
+        final_output = self.dropout(final_output)
         
-        # Step 4: Convert to sentiment probability (0-1 range)
+        # Step 5: Convert to sentiment probability (0-1 range)
         output = torch.sigmoid(self.fc(final_output))
         
         return output
