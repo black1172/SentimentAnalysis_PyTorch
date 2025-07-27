@@ -23,11 +23,12 @@ model = SentimentLSTM(vocab_size, embed_size, hidden_size)
 
 # Training setup
 criterion = nn.BCELoss()
-optimizer = optim.Adam(model.parameters(), lr=0.0001)
+optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Training loop
 final_average_loss = 0
-for epoch in range(200):
+num_of_epochs = 10
+for epoch in range(num_of_epochs):
     for review_text, label in reviews:
 
         # Step 1: Convert text to tokens
@@ -57,7 +58,7 @@ for review_text, label in reviews:
     print(f"Loss: {loss.item():.3f}\n")
         
 # Final Loss reporting
-final_average_loss /= len(reviews)
+final_average_loss /= (len(reviews) * num_of_epochs)
 print(f"Final Average loss: {final_average_loss: .3f}")
 
 # Testing Untrained data
