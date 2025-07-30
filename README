@@ -1,0 +1,56 @@
+# Movie Review Sentiment Analysis with RNN/LSTM
+
+A recurrent neural network implementation using PyTorch for binary sentiment classification of movie reviews. This project demonstrates text processing, sequence modeling, and approaches to handling overfitting in natural language processing tasks.
+
+## Project Overview
+
+This project implements sentiment analysis using RNN and LSTM architectures to classify movie reviews as positive or negative. The implementation includes custom tokenization, word embeddings, and explores architectural improvements including dropout regularization and bidirectional processing to address generalization challenges.
+
+## Results
+
+The model achieves near-perfect accuracy on training data but demonstrates classic overfitting behavior when tested on unseen reviews. Multiple architectural approaches were explored including simple RNN, LSTM, and bidirectional LSTM with varying degrees of improvement on generalization performance.
+
+## Architecture
+
+The final implementation uses a bidirectional LSTM with dropout regularization:
+
+```python
+class SentimentRNN(nn.Module):
+    def __init__(self, vocab_size, embed_size, hidden_size):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embed_size)
+        self.lstm = nn.LSTM(embed_size, hidden_size, bidirectional=True, batch_first=True)
+        self.dropout = nn.Dropout(0.5)
+        self.fc = nn.Linear(hidden_size * 2, 1)
+```
+
+The model processes tokenized text through word embeddings, sequential LSTM processing, and binary classification with sigmoid activation.
+
+## Key Learning Outcomes
+
+**Text Processing:** Custom tokenizer implementation with vocabulary building, text preprocessing, and out-of-vocabulary word handling using special tokens.
+
+**Sequence Modeling:** Understanding RNN memory mechanisms, LSTM improvements over simple RNN, and bidirectional processing for enhanced context understanding.
+
+**Training Challenges:** Experience with overfitting identification, dropout regularization, hyperparameter tuning, and the fundamental challenges of NLP generalization with limited training data.
+
+## Technical Implementation
+
+**Components:** Custom tokenizer for text-to-number conversion, embedding layer for dense word representations, LSTM for sequence processing, and linear classification layer.
+
+**Training Process:** Binary cross-entropy loss, Adam optimization, and systematic experimentation with architecture variations to improve generalization performance.
+
+## Files
+
+- `tokenizer.py` - Custom text tokenization and vocabulary management
+- `model.py` - RNN/LSTM architecture definitions  
+- `data.py` - Training data generation
+- `main.py` - Training loop and evaluation script
+
+## Usage
+
+Install dependencies: `pip install torch`
+
+Run training: `python main.py`
+
+The model demonstrates the progression from simple RNN to LSTM to bidirectional LSTM, highlighting both the capabilities and limitations of sequence models for sentiment analysis tasks.

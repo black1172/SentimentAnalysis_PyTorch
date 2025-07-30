@@ -23,11 +23,11 @@ model = SentimentLSTM(vocab_size, embed_size, hidden_size)
 
 # Training setup
 criterion = nn.BCELoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
+optimizer = optim.Adam(model.parameters(), lr=0.005)
 
 # Training loop
 final_average_loss = 0
-num_of_epochs = 20
+num_of_epochs = 25
 for i, epoch in enumerate(range(num_of_epochs)):
     for review_text, label in reviews:
 
