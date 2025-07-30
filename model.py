@@ -9,13 +9,13 @@ class SentimentLSTM(nn.Module):
         self.embedding = nn.Embedding(vocab_size, embed_size)
         
         # Layer 2: Process sequence with memory (Layer size 2)
-        self.lstm = nn.LSTM(embed_size, hidden_size, num_layers= 1, batch_first=True)
+        self.lstm = nn.LSTM(embed_size, hidden_size, num_layers= 2, dropout= 0.3, batch_first=True, bidirectional=True)
 
         # Layer 3: Add dropout to prevent over fitting
         self.dropout = nn.Dropout(0.5)
         
         # Layer 4: Final classification
-        self.fc = nn.Linear(hidden_size, 1)  # 1 output for binary classification
+        self.fc = nn.Linear(hidden_size * 2, 1)  # 1 output for binary classification
         
     def forward(self, x):
         # Step 1: Convert word IDs to word vectors

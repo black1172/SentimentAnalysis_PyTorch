@@ -27,8 +27,8 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Training loop
 final_average_loss = 0
-num_of_epochs = 25
-for epoch in range(num_of_epochs):
+num_of_epochs = 20
+for i, epoch in enumerate(range(num_of_epochs)):
     for review_text, label in reviews:
 
         # Step 1: Convert text to tokens
@@ -51,11 +51,11 @@ for epoch in range(num_of_epochs):
 
         final_average_loss += loss.item()
         
-# Printing final
-for review_text, label in reviews:
-    print(f"Text: {review_text}")
-    print(f"Prediction: {prediction.item():.3f}, Actual: {label}")
-    print(f"Loss: {loss.item():.3f}\n")
+        # Printing 
+        if(num_of_epochs == (i + 1)):
+            print(f"Text: {review_text}")
+            print(f"Prediction: {prediction.item():.3f}, Actual: {label}")
+            print(f"Loss: {loss.item():.3f}\n")
         
 # Final Loss reporting
 final_average_loss /= (len(reviews) * num_of_epochs)
