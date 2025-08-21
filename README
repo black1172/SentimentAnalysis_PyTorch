@@ -1,18 +1,24 @@
-# Movie Review Sentiment Analysis with RNN/LSTM #
+# Movie Review Sentiment Analysis with RNN/LSTM
 
-A recurrent neural network implementation using PyTorch for binary sentiment classification of movie reviews. This project demonstrates text processing, sequence modeling, and approaches to handling overfitting in natural language processing tasks.
+A PyTorch implementation of a recurrent neural network (RNN) for sentiment classification of movie reviews. This project demonstrates sequence modeling, text preprocessing, and approaches to mitigating overfitting in natural language processing (NLP).
 
-## Project Overview ##
+## Project Overview
 
-This project implements sentiment analysis using RNN and LSTM architectures to classify movie reviews as positive or negative. The implementation includes custom tokenization, word embeddings, and explores architectural improvements including dropout regularization and bidirectional processing to address generalization challenges.
+This project applies RNN and LSTM architectures to classify movie reviews as positive or negative. It explores:
 
-## Results ##
+- Custom tokenization and vocabulary management
+- Word embeddings for dense text representations
+- Architectural improvements including dropout regularization and bidirectional LSTMs to improve generalization
 
-The model achieves near-perfect accuracy on training data but demonstrates classic overfitting behavior when tested on unseen reviews. Multiple architectural approaches were explored including simple RNN, LSTM, and bidirectional LSTM with varying degrees of improvement on generalization performance.
+The goal is to understand both the capabilities and limitations of sequence models for sentiment analysis.
 
-## Architecture ##
+## Technical Highlights
 
-The final implementation uses a bidirectional LSTM with dropout regularization:
+**Architecture:**
+
+- Bidirectional LSTM with dropout regularization
+- Embedding layer for word representations
+- Linear classification layer with sigmoid activation
 
 ```python
 class SentimentRNN(nn.Module):
@@ -24,33 +30,35 @@ class SentimentRNN(nn.Module):
         self.fc = nn.Linear(hidden_size * 2, 1)
 ```
 
-The model processes tokenized text through word embeddings, sequential LSTM processing, and binary classification with sigmoid activation.
+- **Sequence Modeling:** Captures sequential dependencies in text, with bidirectional LSTM providing context from both past and future tokens.
 
-## Key Learning Outcomes ##
+- **Regularization & Overfitting:** Dropout and architectural experimentation help mitigate classic overfitting seen in training vs. test performance.
 
-**Text Processing:** Custom tokenizer implementation with vocabulary building, text preprocessing, and out-of-vocabulary word handling using special tokens.
+- **Training Details:** Binary cross-entropy loss, Adam optimizer, and systematic hyperparameter tuning.
 
-**Sequence Modeling:** Understanding RNN memory mechanisms, LSTM improvements over simple RNN, and bidirectional processing for enhanced context understanding.
+## Key Learning Outcomes
 
-**Training Challenges:** Experience with overfitting identification, dropout regularization, hyperparameter tuning, and the fundamental challenges of NLP generalization with limited training data.
+- **Text Processing:** Built custom tokenizer, managed vocabulary, and handled out-of-vocabulary words.
 
-## Technical Implementation ##
+- **Sequence Modeling:** Gained hands-on experience with RNN memory mechanisms, LSTM improvements, and bidirectional processing.
 
-**Components:** Custom tokenizer for text-to-number conversion, embedding layer for dense word representations, LSTM for sequence processing, and linear classification layer.
+- **Overfitting & Generalization:** Learned to identify overfitting, apply dropout, and adjust architectures to improve model robustness.
 
-**Training Process:** Binary cross-entropy loss, Adam optimization, and systematic experimentation with architecture variations to improve generalization performance.
+- **NLP Workflow:** Practiced end-to-end pipeline design: text preprocessing → embedding → sequential modeling → binary classification.
 
-## Files ##
+## Files & Components
 
-- `tokenizer.py` - Custom text tokenization and vocabulary management
-- `model.py` - RNN/LSTM architecture definitions  
-- `data.py` - Training data generation
-- `main.py` - Training loop and evaluation script
+- `tokenizer.py` – Custom tokenizer and vocabulary management
+- `model.py` – RNN/LSTM architecture definitions
+- `data.py` – Training data preparation and preprocessing
+- `main.py` – Training loop, evaluation, and experiment tracking
 
-## Usage ##
+## Impact & Use Case
 
-Install dependencies: `pip install torch`
+This project highlights the challenges of sequence modeling for text classification, illustrating how advanced RNN architectures like bidirectional LSTMs can improve context understanding while still facing generalization challenges. It’s a clear demonstration of practical NLP engineering, applicable to tasks like sentiment analysis, chatbots, or recommendation systems.
 
-Run training: `python main.py`
+## Technologies Used
 
-The model demonstrates the progression from simple RNN to LSTM to bidirectional LSTM, highlighting both the capabilities and limitations of sequence models for sentiment analysis tasks.
+- Python 3.11+
+- PyTorch for model implementation and training
+- NumPy & standard Python libraries for preprocessing and data handling
